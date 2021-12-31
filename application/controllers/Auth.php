@@ -11,6 +11,10 @@ class Auth extends CI_Controller {
 
 	public function index()
 	{
+		if ($this->session->userdata('email')) {
+			redirect('user');
+		}
+
 		$this->form_validation->set_rules('email','Email','trim|required|valid_email');
 		$this->form_validation->set_rules('password','Password','trim|required');
 		if ( $this->form_validation->run() == false ) {
@@ -26,8 +30,10 @@ class Auth extends CI_Controller {
 		
 	}
 
-	private function _login()
+	private function _login()	
 	{
+
+
 		$email = $this->input->post('email');
 		$password = $this->input->post('password');
 		$user = $this->db->get_where('user', ['email' => $email])->row_array();
@@ -65,6 +71,9 @@ class Auth extends CI_Controller {
 
 	public function registration()
 	{	
+		if ($this->session->userdata('email')) {
+			redirect('user');
+		}
 		$this->form_validation->set_rules('name','Name','required|trim');
 		$this->form_validation->set_rules('email','Email','required|trim|valid_email|is_unique[user.email]',[
 			"is_unique" => 'This Email has Already Registered!']);
@@ -110,7 +119,11 @@ class Auth extends CI_Controller {
 			redirect('auth');
 		}
 
-
+		public function blocked()
+		{
+			
+			$this->load->view('auth/blocked');
+		}
 
 
 

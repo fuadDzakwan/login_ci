@@ -55,7 +55,7 @@
             		
             		<?php endif; ?>
             	
-                	<a class="nav-link" href="<?= base_url($sm['url']); ?>">
+                	<a class="nav-link pb-md-0" href="<?= base_url($sm['url']); ?>">
                     <i class="<?= $sm['icon']; ?>"></i>
                     <span><?= $sm['tittle']; ?></span></a>
            		</li>
@@ -63,7 +63,7 @@
             	<?php endforeach; ?>
 
             	<!-- Divider -->
-            <hr class="sidebar-divider">
+            <hr class="sidebar-divider mt-md-3">
 
         	<?php endforeach; ?>
 
